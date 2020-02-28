@@ -8,7 +8,8 @@ namespace Fitness.BL.Model
 {/// <summary>
 /// User
 /// </summary>
-    class User
+   [Serializable]
+   public class User
     {
         /// <summary>
         /// Name.
@@ -49,7 +50,7 @@ namespace Fitness.BL.Model
             {
                 throw new ArgumentNullException("Name can not be null or empty.", nameof(name));
             }
-            if(Gender == null)
+            if(gender == null)
             {
                 throw new ArgumentNullException("Gender can not be null or empty.", nameof(gender));
             }
@@ -57,7 +58,7 @@ namespace Fitness.BL.Model
             {
                 throw new ArgumentException("Impossible date of birthday");
             }
-            if(weight <= 0)
+            if (weight <= 0)
             {
                 throw new ArgumentException("Weight can not be less or equal than zero.", nameof(weight));
             }

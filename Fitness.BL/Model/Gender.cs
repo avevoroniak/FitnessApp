@@ -17,7 +17,7 @@ namespace Fitness.BL.Model
         /// </summary>
         public string Name { get; }
         /// <summary>
-        /// Create new gender
+        /// Create new gender.
         /// </summary>
         /// <param name="name">gender name</param>
         public Gender(string name)

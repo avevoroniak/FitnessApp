@@ -18,11 +18,11 @@ namespace Fitness.BL.Model
         /// <summary>
         /// Gender.
         /// </summary>
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }
         /// <summary>
         /// Date of Birthday.
         /// </summary>
-        public DateTime BirthDate { get; }
+        public DateTime BirthDate { get; set; }
         /// <summary>
         /// Weight.
         /// </summary>
@@ -39,6 +39,7 @@ namespace Fitness.BL.Model
         /// <param name="birthDate"> Date of Birthday. </param>
         /// <param name="weight"> Weight. </param>
         /// <param name="height"> Height. </param>
+        public int Age { get { return DateTime.Now.Year - BirthDate.Year; } }
         public User(string name, 
                     Gender gender, 
                     DateTime birthDate, 
@@ -56,7 +57,7 @@ namespace Fitness.BL.Model
             }
             if (birthDate < DateTime.Parse("01.01.1900") || birthDate >= DateTime.Now)
             {
-                throw new ArgumentException("Impossible date of birthday");
+                throw new ArgumentException("Impossible date of birthday.");
             }
             if (weight <= 0)
             {
@@ -74,9 +75,17 @@ namespace Fitness.BL.Model
             Weight = weight;
             Height = height;
         }
+        public User(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("Name can not be null or empty.", nameof(name));
+            }
+            Name = name;
+        }
         public override string ToString()
         {
-            return Name;
+            return $"{Name}  {Age}";
         }
     }
 }

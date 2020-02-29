@@ -15,16 +15,57 @@ namespace Fitness.CMD
             Console.WriteLine("I am happy to see you in me application");
             Console.WriteLine("Please, write user name");
             var name = Console.ReadLine();
-            Console.WriteLine("Write gender");
-            var gender = Console.ReadLine();
-            Console.WriteLine("Write birthDay");
-            var birthDay = DateTime.Parse(Console.ReadLine()); // TODO ReWrite
-            Console.WriteLine("Write weight");
-            var weight = Double.Parse(Console.ReadLine());
-            Console.WriteLine("Write height");
-            var heigth = Double.Parse(Console.ReadLine());
-            UserController uc = new UserController(name,  gender, birthDay, weight, heigth);
-            uc.Save();
+            UserController uc = new UserController(name);
+            if (uc.IsNewUser)
+            {
+                Console.WriteLine("Write gender ");
+                string gender = Console.ReadLine();
+                DateTime birthDate;
+                birthDate = ParseDate();
+                double weight = ParseDouble("weight");
+                double height = ParseDouble("height");
+                uc.SetNewUserData(gender, birthDate, weight, height);
+
+
+            }
+            Console.WriteLine(uc.CurrentUser.ToString());
+        }
+
+        private static DateTime ParseDate()
+        {
+            DateTime birthDate;
+            while (true)
+            {
+                Console.WriteLine("Write your  (dd.mm.yyyy) ");
+
+                if (DateTime.TryParse(Console.ReadLine(), out birthDate))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Uncorrect date");
+                }
+            }
+
+            return birthDate;
+        }
+
+        private static double ParseDouble(string name)
+        {
+            while (true)
+            {
+                Console.WriteLine($"Write your {name} ");
+
+                if (Double.TryParse(Console.ReadLine(), out double value))
+                {
+                    return value;
+                }
+                else
+                {
+                    Console.WriteLine($"Uncorrect {name}");
+                }
+            }
         }
     }
 }

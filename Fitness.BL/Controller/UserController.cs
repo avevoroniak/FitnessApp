@@ -12,8 +12,9 @@ namespace Fitness.BL.Controller
     /// <summary>
     /// Application controller.
     /// </summary>
-    public class UserController
+    public class UserController : ControllerBase
     {
+        private const string USERS_FILE_NAME = "users.dat";
         /// <summary>
         /// Application user.
         /// </summary>
@@ -45,11 +46,7 @@ namespace Fitness.BL.Controller
         /// </summary>
         public void Save()
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            using(FileStream fs = new FileStream("users.dat", FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, Users);
-            }
+            Save(USERS_FILE_NAME, Users);
         }
         /// <summary>
         /// Retrieve list of users.
@@ -57,19 +54,7 @@ namespace Fitness.BL.Controller
         /// <returns>Application user.</returns>
        private List<User> GetUsersData()
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            using (FileStream fs = new FileStream("users.dat", FileMode.OpenOrCreate))
-            {
-                if( fs.Length > 0 && formatter.Deserialize(fs) is List<User> users)
-                {
-                    return users;
-                }
-                else
-                {
-                    return new List<User>();
-                }
-                // TODO: What we are going to do if we do not read user ?
-            }
+           return Load<List<User>>(USERS_FILE_NAME, Users) ?? new List<User>();
         }
         public void SetNewUserData(string genderName,
                                    DateTime birthDate,

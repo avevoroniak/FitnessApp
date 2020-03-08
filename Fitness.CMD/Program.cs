@@ -16,6 +16,7 @@ namespace Fitness.CMD
             Console.WriteLine("Please, write user name");
             var name = Console.ReadLine();
             UserController uc = new UserController(name);
+            EatingController eatingController = new EatingController(uc.CurrentUser);
             if (uc.IsNewUser)
             {
                 Console.WriteLine("Write gender ");
@@ -29,6 +30,36 @@ namespace Fitness.CMD
 
             }
             Console.WriteLine(uc.CurrentUser.ToString());
+            Console.WriteLine("What are you going to do ?");
+            Console.WriteLine("E - input food eating");
+            var key = Console.ReadKey();
+            if(key.Key == ConsoleKey.E)
+            {
+              var foods =  EnterEating();
+              eatingController.Add(foods.Food, foods.Weight);
+              foreach(var food in eatingController.Eating.Foods)
+              {
+                    Console.WriteLine(food);
+              }
+            }
+        }
+
+        private static (Food Food, double Weight) EnterEating()
+        {
+            Console.WriteLine("Input the name of product: ");
+            string foodName =  Console.ReadLine();
+            Console.WriteLine("Input the weight of product: ");
+            double weight = ParseDouble("weight");
+            double calories = ParseDouble("Calories");
+            double proteins = ParseDouble("Proteins");
+            double fats = ParseDouble("fats");
+            double carbohydrates = ParseDouble("carbohydrates");
+            /* Calories = calories / 100;
+            Proteins = proteins / 100;
+            Fats = fats / 100;
+            Carbohydrates 
+             */
+            return (Food : new Food(foodName, calories, proteins, fats, calories), Weight: weight);
         }
 
         private static DateTime ParseDate()
@@ -55,7 +86,7 @@ namespace Fitness.CMD
         {
             while (true)
             {
-                Console.WriteLine($"Write your {name} ");
+                Console.WriteLine($"Write  {name} ");
 
                 if (Double.TryParse(Console.ReadLine(), out double value))
                 {

@@ -2,7 +2,9 @@
 using Fitness.BL.Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,8 +14,10 @@ namespace Fitness.CMD
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("I am happy to see you in me application");
-            Console.WriteLine("Please, write user name");
+            CultureInfo cultreInfo = CultureInfo.CreateSpecificCulture("ru-ru");
+            ResourceManager resourseManager = new ResourceManager("Fitness.CMD.Languages.Messeges",typeof(Program).Assembly);
+            Console.WriteLine(resourseManager.GetString("Hello"),cultreInfo);
+            Console.WriteLine(resourseManager.GetString("EnterName"),cultreInfo);
             var name = Console.ReadLine();
             UserController uc = new UserController(name);
             EatingController eatingController = new EatingController(uc.CurrentUser);

@@ -56,10 +56,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Languages\Messeges.ru-ru.Designer.cs">
+    <Compile Include="Languages\Messeges.ua-ua.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Messeges.ru-ru.resx</DependentUpon>
+      <DependentUpon>Messeges.ua-ua.resx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,9 +84,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Messeges.en-us.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Languages\Messeges.ru-ru.resx">
+    <EmbeddedResource Include="Languages\Messeges.ua-ua.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messeges.ru-ru.Designer.cs</LastGenOutput>
+      <LastGenOutput>Messeges.ua-ua.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
